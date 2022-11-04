@@ -1,12 +1,20 @@
-﻿using UnityEngine;
+﻿using Code.Infrastructure.Services;
+using UnityEngine;
 
 namespace Code.Infrastructure.GameStates
 {
     public class LoadLevelState : IGameState
     {
+        private readonly SceneLoadingService sceneLoaderService;
+
+        public LoadLevelState(SceneLoadingService sceneLoader)
+        {
+            sceneLoaderService = sceneLoader;
+        }
+        
         public void Enter()
         {
-            Debug.Log("LoadLevelState");
+            sceneLoaderService.Load("Main");
         }
 
         public void Exit()

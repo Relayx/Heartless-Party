@@ -1,15 +1,14 @@
 ﻿using Code.Infrastructure.GameStates;
-using UnityEngine;
 
 namespace Code.Infrastructure
 {
     public class Game
     {
-        private GameStateMachine stateMachine;
+        private readonly GameStateMachine stateMachine;
 
-        public Game(GameStateMachine stateMachine)
+        public Game()
         {
-            this.stateMachine = stateMachine;
+            this.stateMachine = new GameStateMachine();
             stateMachine.Enter<LoadLevelState>();
         }
     }

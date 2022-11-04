@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Code.Infrastructure.GameStates;
+using Code.Infrastructure.Services;
 
-namespace Code.Infrastructure
+namespace Code.Infrastructure.GameStates
 {
     public class GameStateMachine
     {
@@ -13,7 +13,7 @@ namespace Code.Infrastructure
         {
             states = new Dictionary<Type, IGameState>()
             {
-                [typeof(LoadLevelState)] = new LoadLevelState()
+                [typeof(LoadLevelState)] = new LoadLevelState(new SceneLoadingService())
             };
         }
 
