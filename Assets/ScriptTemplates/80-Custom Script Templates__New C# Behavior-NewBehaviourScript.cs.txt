@@ -1,0 +1,42 @@
+using UnityEngine;
+
+    #ROOTNAMESPACEBEGIN#
+public class #SCRIPTNAME# : MonoBehaviour
+{
+    // Fields --------------------------------------------
+    #NOTRIM#
+    // ---------------------------------------------------
+#NOTRIM#
+#NOTRIM#
+#NOTRIM#
+    // Properties ----------------------------------------
+    #NOTRIM#
+    // ---------------------------------------------------
+#NOTRIM#
+#NOTRIM#
+#NOTRIM#
+    // Events --------------------------------------------
+    #NOTRIM#
+    // ---------------------------------------------------
+#NOTRIM#
+#NOTRIM#
+#NOTRIM#
+    // Unity Methods -------------------------------------
+    protected void Start()
+    {
+        #NOTRIM#
+    }
+    #NOTRIM#
+    protected void Update()
+    {
+        #NOTRIM#
+    }
+    // ---------------------------------------------------
+#NOTRIM#
+#NOTRIM#
+#NOTRIM#
+    // Other Methods -------------------------------------
+    #NOTRIM#
+    // ---------------------------------------------------
+}
+#ROOTNAMESPACEEND#
