@@ -9,9 +9,18 @@ namespace Code.Infrastructure.Installers
         public override void InstallBindings()
         {
             InstallSceneLoadingService();
+            InstallEventService();
             
             InstallCoroutineRunner();
             InstallGame();
+        }
+
+        private void InstallEventService()
+        {
+            Container
+                .Bind<EventsService>()
+                .AsSingle()
+                .NonLazy();
         }
 
         private void InstallSceneLoadingService()
