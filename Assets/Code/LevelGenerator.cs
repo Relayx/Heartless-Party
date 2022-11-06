@@ -8,6 +8,7 @@ namespace Code.Infrastructure
     {
         [SerializeField] private Vector2Int mapSize = new Vector2Int(15, 15);
         [SerializeField] private Vector2Int startRoom = new Vector2Int(7, 7);
+        [SerializeField] private Vector2Int distanceBetweenRooms = new Vector2Int(10, 10);
 
         public Room[,] rooms;
 
@@ -40,7 +41,8 @@ namespace Code.Infrastructure
                             queue.Enqueue(neighbour);
                             rooms[neighbour.x, neighbour.y] = 
                                 Object.Instantiate(roomPrefabs[Random.Range(0, roomPrefabs.Count)]);
-                            var moveTo = new Vector3(direction.x * roomSize.x, direction.y * roomSize.y, 0);
+                            Vector3 moveTo = Vector3WithDirection(direction, roomSize) + 
+                                             Vector3WithDirection(direction, distanceBetweenRooms);
                             rooms[neighbour.x, neighbour.y].transform.position =
                                 rooms[curRoom.x, curRoom.y].transform.position + moveTo;
                         }
@@ -59,6 +61,11 @@ namespace Code.Infrastructure
             }
 
             AddTransitions();
+        }
+
+        private static Vector3 Vector3WithDirection(Vector2Int direction, Vector2Int roomSize)
+        {
+            return new Vector3(direction.x * roomSize.x, direction.y * roomSize.y, 0);
         }
 
         private void AddTransitions()

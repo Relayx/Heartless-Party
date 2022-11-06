@@ -19,6 +19,7 @@ public class LoadScene : MonoBehaviour
         {
             var levelGenerator = new LevelGenerator();
             levelGenerator.Generate(roomPrefabs, roomCount);
+            yield return new WaitForSeconds(0.3f);
             foreach (var room in levelGenerator.rooms)
             {
                 if (room != null)
