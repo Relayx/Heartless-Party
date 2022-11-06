@@ -1,13 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using Code;
 using Code.Infrastructure;
+using Code.Level;
 using Unity.VisualScripting;
 using UnityEngine;
+using Zenject;
 
 public class LoadScene : MonoBehaviour
 {
-    [SerializeField] private List<Room> roomPrefabs;
-    [SerializeField] private int roomCount = 10;
+    private LevelService levelService;
+    [SerializeField] private LevelSettings levelSettings;
+    
+    [Inject]
+    public void Constructor(LevelService service)
+    {
+        levelService = service;
+    }
+    
     void Start()
     {
         StartCoroutine(Scene());
@@ -17,16 +27,9 @@ public class LoadScene : MonoBehaviour
     {
         while (true)
         {
-            var levelGenerator = new LevelGenerator();
-            levelGenerator.Generate(roomPrefabs, roomCount);
-            yield return new WaitForSeconds(0.3f);
-            foreach (var room in levelGenerator.rooms)
-            {
-                if (room != null)
-                {
-                    Destroy(room.gameObject);
-                }
-            }
+            levelService.LevelGenerate(levelSettings);
+            yield return new WaitForSeconds(3f);
+            levelService.DeleteLevel();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Code.Infrastructure.Services;
 using Code.Infrastructure.Util;
+using Code.Level;
 using Zenject;
 
 namespace Code.Infrastructure.Installers
@@ -13,6 +14,9 @@ namespace Code.Infrastructure.Installers
             
             InstallCoroutineRunner();
             InstallGame();
+            
+            InstallLevelGenerator();
+            InstallLevelService();
         }
 
         private void InstallEventService()
@@ -43,6 +47,22 @@ namespace Code.Infrastructure.Installers
         {
             Container
                 .Bind<Game>()
+                .AsSingle()
+                .NonLazy();
+        }
+
+        private void InstallLevelGenerator()
+        {
+            Container
+                .Bind<LevelGenerator>()
+                .AsSingle()
+                .NonLazy();
+        }
+        
+        private void InstallLevelService()
+        {
+            Container
+                .Bind<LevelService>()
                 .AsSingle()
                 .NonLazy();
         }
